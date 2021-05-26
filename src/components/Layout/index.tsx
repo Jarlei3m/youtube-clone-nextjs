@@ -2,7 +2,9 @@ import { ReactNode } from "react";
 import { makeStyles } from '@material-ui/core';
 import theme from "../../theme";
 import  Head  from "next/head";
+
 import { TopBar } from "./TopBar";
+import { NavBar } from "./NavBar";
 
 const useStyles = makeStyles({
   root: {
@@ -51,7 +53,7 @@ export function Layout({children, title}: LayoutProps) {
 
       <div className={classes.root}>
         <TopBar />
-        <div>Navbar</div>
+        <NavBar />
         <div className={classes.warpper}>
           <div className={classes.contentContainer}>
             <div className={classes.content}>{children}</div>
