@@ -25,6 +25,7 @@
     ],
     "rules": {
         "prettier/prettier": "error",
-        "react/tsx-filename-extension": [1, {"extensions": [".ts", ".tsx"]}]
+        "react/tsx-filename-extension": [1, {"extensions": [".ts", ".tsx"]}],
+        "react/react-in-jsx-scope": "off"
     }
 }
