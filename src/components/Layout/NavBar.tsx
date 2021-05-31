@@ -1,6 +1,21 @@
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
-import { makeStyles, Hidden, Drawer, Box, List, ListItem, ListItemIcon, ListItemText, ListSubheader, Avatar, Divider, Typography, Button, Icon } from "@material-ui/core";
+import {
+  makeStyles,
+  Hidden,
+  Drawer,
+  Box,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+  Avatar,
+  Divider,
+  Typography,
+  Button,
+  Icon,
+} from '@material-ui/core';
 
 import HomeIcon from '@material-ui/icons/Home';
 import Subscriptions from '@material-ui/icons/Subscriptions';
@@ -51,15 +66,11 @@ export function NavBar() {
   ];
 
   function isSelected(path: string) {
-    return router.pathname === path
+    return router.pathname === path;
   }
 
   const content = (
-    <Box
-      height='100%'
-      display='flex'
-      flexDirection='column'
-    >
+    <Box height="100%" display="flex" flexDirection="column">
       <List>
         {primaryMenu.map((item) => {
           const { id, label, path } = item;
@@ -77,15 +88,13 @@ export function NavBar() {
               </ListItemIcon>
               <ListItemText
                 classes={{
-                  primary: classes.listItemText
+                  primary: classes.listItemText,
                 }}
                 primary={label}
-              >
-
-              </ListItemText>
+              ></ListItemText>
             </ListItem>
-          )
-        })} 
+          );
+        })}
       </List>
 
       <Divider />
@@ -107,27 +116,25 @@ export function NavBar() {
               </ListItemIcon>
               <ListItemText
                 classes={{
-                  primary: classes.listItemText
+                  primary: classes.listItemText,
                 }}
                 primary={label}
-              >
-
-              </ListItemText>
+              ></ListItemText>
             </ListItem>
-          )
-        })} 
+          );
+        })}
       </List>
 
       <Divider />
 
       <Box mx={4} my={2}>
-        <Typography variant='body2'>
+        <Typography variant="body2">
           Faça login para curtir vídeos, comentar e se inscrever.
         </Typography>
         <Box mt={2}>
-          <Button 
-            variant='outlined'
-            color='secondary'
+          <Button
+            variant="outlined"
+            color="secondary"
             startIcon={<AccountCircle />}
           >
             Fazer login
@@ -140,13 +147,13 @@ export function NavBar() {
   return (
     <Hidden>
       <Drawer
-        anchor='left'
+        anchor="left"
         classes={{ paper: classes.desktopDrawer }}
         open
-        variant='persistent'
+        variant="persistent"
       >
         {content}
       </Drawer>
     </Hidden>
-  )
+  );
 }
