@@ -1,10 +1,12 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, Db } from 'mongodb';
+import url from 'url';
 
 const uri = process.env.MONGODB_URI;
 const dbName = process.env.MONGODB_DB;
+console.log('teste:', uri);
 
-const cachedDb;
-const cachedClient;
+let cachedDb: Db;
+let cachedClient: MongoClient;
 
 if (!uri) {
   throw new Error('Please, define the MONGO_URI environment inside .env.local');
@@ -14,7 +16,7 @@ if (!dbName) {
   throw new Error('Please, define the MONGO_DB environment inside .env.local');
 }
 
-export async function connectToDatabase(uri: string) {
+export async function connectToDatabase() {
   if (cachedClient && cachedDb) {
     return {
       client: cachedClient,
