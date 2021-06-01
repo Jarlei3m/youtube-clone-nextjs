@@ -36,7 +36,6 @@ const upload = multer({
 
         cb(null, fileName);
       });
-      // cb(null, Date.now().toString());
     },
   }),
 });

@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next';
 import React from 'react';
 import { Layout } from 'src/components/Layout';
 import { VideoCard } from 'src/components/VideoCard';
+import getVideos from 'src/database/getVideos';
 
 interface itemProps {
   id: number;
@@ -38,52 +39,7 @@ export default function Home({ data }: HomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = [
-    {
-      id: 1,
-      title: 'NEXT.JS: O FRAMEWORK QUE VOCÊ DEVERIA CONHECER [PARTE #01]',
-      authorId: 1,
-      authorName: 'Joshua Rawson-Harris',
-      authorAvatar: 'avatarUrl',
-      views: 10,
-      thumb: '/thumbs/next01.jfif',
-      videoUrl: 'url',
-      updatedAt: new Date(),
-    },
-    {
-      id: 2,
-      title: 'lorem ipsum dolor sit amet consectetur adipiscing elit',
-      authorId: 1,
-      authorName: 'Joshua Rawson-Harris',
-      authorAvatar: 'avatarUrl',
-      views: 10,
-      thumb: '/thumbs/next03.jfif',
-      videoUrl: 'url',
-      updatedAt: new Date(),
-    },
-    {
-      id: 3,
-      title: 'lorem ipsum dolor sit amet consectetur adipiscing elit',
-      authorId: 1,
-      authorName: 'Joshua Rawson-Harris',
-      authorAvatar: 'avatarUrl',
-      views: 10,
-      thumb: '/thumbs/next01.jfif',
-      videoUrl: 'url',
-      updatedAt: new Date(),
-    },
-    {
-      id: 4,
-      title: 'lorem ipsum dolor sit amet consectetur adipiscing elit',
-      authorId: 1,
-      authorName: 'Joshua Rawson-Harris',
-      authorAvatar: 'avatarUrl',
-      views: 10,
-      thumb: '/thumbs/next03.jfif',
-      videoUrl: 'url',
-      updatedAt: new Date(),
-    },
-  ];
+  const data = await getVideos();
 
   return {
     props: {
