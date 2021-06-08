@@ -7,8 +7,7 @@ import { VideoCard } from 'src/components/VideoCard';
 import getVideos from 'src/database/getVideos';
 
 interface itemProps {
-  id: number;
-
+  _id: string;
   title: string;
   thumb: string;
   authorName: string;
@@ -28,7 +27,7 @@ export default function Home({ data }: HomeProps) {
         <Grid container spacing={4}>
           {data.map((item) => {
             return (
-              <Grid key={item.id} item xl={3} lg={3} md={4} sm={6} xs={12}>
+              <Grid key={item._id} item xl={3} lg={3} md={4} sm={6} xs={12}>
                 <VideoCard item={item} />
               </Grid>
             );

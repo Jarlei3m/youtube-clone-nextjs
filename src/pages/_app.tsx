@@ -6,6 +6,27 @@ import { Provider } from 'next-auth/client';
 import { AppProps } from 'next/app';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../theme';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
+import { Router } from 'next/router';
+
+NProgress.configure({
+  showSpinner: false,
+  trickleSpeed: 300,
+  // trickleRate: 0.1,
+});
+
+Router.events.on('routeChangeStart', () => {
+  NProgress.start();
+});
+
+Router.events.on('routeChangeComplete', () => {
+  NProgress.done();
+});
+
+Router.events.on('routeChangeError', () => {
+  NProgress.done();
+});
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -33,6 +54,18 @@ export default function MyApp(props: AppProps) {
           <Component {...pageProps} />
         </ThemeProvider>
       </Provider>
+      <style global jsx>
+        {`
+          #nprogress {
+            position: relative;
+            z-index: 99999999;
+          }
+          #nprogress .bar {
+            background: #f00 !important;
+            height: 3px;
+          }
+        `}
+      </style>
     </>
   );
 }
