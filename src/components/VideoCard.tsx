@@ -55,7 +55,7 @@ export function VideoCard({ item }: VideoCardProps) {
             {item.authorName}
           </Typography>
           <Typography variant="body2" color="textSecondary">
-            {`${item.views} + ${dayjs(item.updatedAt).fromNow()}`}
+            {`${item.views} visualizações • ${dayjs(item.updatedAt).fromNow()}`}
           </Typography>
         </Box>
       </Box>

@@ -1,5 +1,6 @@
 import { Box, Grid } from '@material-ui/core';
 import { GetStaticProps } from 'next';
+import { getSession } from 'next-auth/client';
 import React from 'react';
 import { Layout } from 'src/components/Layout';
 import { VideoCard } from 'src/components/VideoCard';

@@ -3,7 +3,6 @@ import url from 'url';
 
 const uri = process.env.MONGODB_URI;
 const dbName = process.env.MONGODB_DB;
-console.log('teste:', uri);
 
 let cachedDb: Db;
 let cachedClient: MongoClient;

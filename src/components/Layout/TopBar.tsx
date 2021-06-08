@@ -1,7 +1,19 @@
-import { AppBar, Box, Button, Hidden, IconButton, InputBase, makeStyles, Paper, Toolbar } from "@material-ui/core";
-import { AccountCircle, Apps, MoreVert, VideoCall } from "@material-ui/icons";
-import MenuIcon from '@material-ui/icons/Menu'
-import SearchIcon from '@material-ui/icons/Search'
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Button,
+  Hidden,
+  IconButton,
+  InputBase,
+  makeStyles,
+  Paper,
+  Toolbar,
+} from '@material-ui/core';
+import { AccountCircle, Apps, MoreVert, VideoCall } from '@material-ui/icons';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import { signIn, signOut, useSession } from 'next-auth/client';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     cursor: 'pointer',
     height: 18,
-    marginLeft: theme.spacing(3)
+    marginLeft: theme.spacing(3),
   },
   search: {
     padding: '2px 4px',
@@ -30,42 +42,39 @@ const useStyles = makeStyles((theme) => ({
   input: {
     flex: 1,
   },
-  icons: {
-
-  }
+  icons: {},
 }));
 
 export function TopBar() {
   const classes = useStyles();
+  const [session] = useSession();
 
   return (
-    <AppBar className={classes.root} color='default'>
+    <AppBar className={classes.root} color="default">
       <Toolbar className={classes.toolbar}>
-        <Box display='flex' alignItems='center'>
+        <Box display="flex" alignItems="center">
           <MenuIcon />
-          <img 
-            src='/new-youtube-logo.svg' 
-            alt='logo' 
-            className={classes.logo} />
+          <img
+            src="/new-youtube-logo.svg"
+            alt="logo"
+            className={classes.logo}
+          />
         </Box>
         <Hidden mdDown>
           <Box>
-            <Paper component='form' className={classes.search}>
-              <InputBase 
+            <Paper component="form" className={classes.search}>
+              <InputBase
                 className={classes.input}
-                placeholder='Pesquisar'
-                inputProps={{ 'arial-label': 'search google maps'}}
+                placeholder="Pesquisar"
+                inputProps={{ 'arial-label': 'search google maps' }}
               />
-              <IconButton 
-                type='submit'
-                arial-label='search'
-              >
+              <IconButton type="submit" arial-label="search">
                 <SearchIcon />
               </IconButton>
             </Paper>
           </Box>
         </Hidden>
-        <Box display='flex'>
+        <Box display="flex">
           <IconButton className={classes.icons}>
             <VideoCall />
           </IconButton>
@@ -75,16 +84,28 @@ export function TopBar() {
           <IconButton className={classes.icons}>
             <MoreVert />
           </IconButton>
-          <Button
-            color='secondary'
-            component='a'
-            variant='outlined'
-            startIcon={<AccountCircle />}
-          >
-            Fazer Login
-          </Button>
+          {!session ? (
+            <Button
+              color="secondary"
+              component="a"
+              variant="outlined"
+              startIcon={<AccountCircle />}
+              onClick={() => signIn('google')}
+            >
+              Fazer Login
+            </Button>
+          ) : (
+            <Box display="flex" alignItems="center">
+              <Avatar
+                onClick={() => signOut()}
+                alt="User"
+                className={classes.avatar}
+                src={session?.user?.image}
+              ></Avatar>
+            </Box>
+          )}
         </Box>
       </Toolbar>
     </AppBar>
-  )
+  );
 }
