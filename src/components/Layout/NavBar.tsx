@@ -93,11 +93,11 @@ export function NavBar() {
             <ListItem
               key={id}
               button
-              className={{ root: classes.listItem }}
+              classes={{ root: classes.listItem }}
               selected={isSelected(path)}
             >
               <ListItemIcon>
-                <Icon style={{ color: isSelected(path) && '#f00' }} />
+                <Icon style={{ color: isSelected(path) ? '#f00' : '' }} />
               </ListItemIcon>
               <ListItemText
                 classes={{
@@ -121,11 +121,11 @@ export function NavBar() {
             <ListItem
               key={id}
               button
-              className={{ root: classes.listItem }}
+              classes={{ root: classes.listItem }}
               selected={isSelected(path)}
             >
               <ListItemIcon>
-                <Icon style={{ color: isSelected(path) && '#f00' }} />
+                <Icon style={{ color: isSelected(path) ? '#f00' : '' }} />
               </ListItemIcon>
               <ListItemText
                 classes={{
@@ -170,7 +170,7 @@ export function NavBar() {
                 key={item.id}
                 button
                 classes={{ root: classes.listItem }}
-                selected={isSelected(item)}
+                selected={isSelected(item.name)}
               >
                 <ListItemIcon>
                   <Avatar className={classes.avatar}>H</Avatar>

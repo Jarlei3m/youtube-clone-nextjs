@@ -1,7 +1,6 @@
 import { MongoClient, Db } from 'mongodb';
-import url from 'url';
 
-const uri = process.env.MONGODB_URI;
+const uri: string | any = process.env.MONGODB_URI;
 const dbName = process.env.MONGODB_DB;
 
 let cachedDb: Db;

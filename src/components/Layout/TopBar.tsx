@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
   icons: {},
+  avatar: {},
 }));
 
 export function TopBar() {
@@ -100,7 +101,7 @@ export function TopBar() {
                 onClick={() => signOut()}
                 alt="User"
                 className={classes.avatar}
-                src={session?.user?.image}
+                src={session?.user?.image || ''}
               ></Avatar>
             </Box>
           )}

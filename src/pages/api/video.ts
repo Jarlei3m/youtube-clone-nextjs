@@ -9,7 +9,7 @@ const secret = process.env.JWT_SECRET;
 
 const handler = nc<NextApiRequest, NextApiResponse>()
   .use(upload.single('file'))
-  .post(async (req, res) => {
+  .post(async (req, res): Promise<any> => {
     const { title, authorId, authorName, authorAvatar, videoUrl } = req.body;
 
     const token = await jwt.getToken({ req, secret });
@@ -24,7 +24,7 @@ const handler = nc<NextApiRequest, NextApiResponse>()
         authorName,
         authorAvatar,
         views: 0,
-        thumb: req.file.location,
+        thumb: (req as any).file.location,
         videoUrl,
         updatedAt: new Date(),
       });
