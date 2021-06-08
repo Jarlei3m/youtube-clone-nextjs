@@ -2,6 +2,7 @@ import { Box, Typography, Avatar, makeStyles } from '@material-ui/core';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 dayjs.extend(relativeTime);
 
@@ -38,7 +39,10 @@ export function VideoCard({ item }: VideoCardProps) {
 
   return (
     <Box>
-      <img
+      <Image
+        width={500}
+        height={300}
+        layout="intrinsic"
         src={item.thumb}
         alt={item.title}
         className={classes.img}
