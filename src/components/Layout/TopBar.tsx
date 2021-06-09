@@ -90,17 +90,21 @@ export function TopBar() {
           </Box>
         </Hidden>
         <Box display="flex">
-          <IconButton className={classes.icons}>
-            {settings.theme === THEMES.DARK ? (
-              <Brightness7
-                onClick={() => saveSettings({ theme: THEMES.LIGHT })}
-              />
-            ) : (
-              <Brightness4
-                onClick={() => saveSettings({ theme: THEMES.DARK })}
-              />
-            )}
-          </IconButton>
+          {settings.theme === THEMES.DARK ? (
+            <IconButton
+              className={classes.icons}
+              onClick={() => saveSettings({ theme: THEMES.LIGHT })}
+            >
+              <Brightness7 />
+            </IconButton>
+          ) : (
+            <IconButton
+              className={classes.icons}
+              onClick={() => saveSettings({ theme: THEMES.DARK })}
+            >
+              <Brightness4 />
+            </IconButton>
+          )}
           <IconButton className={classes.icons}>
             <VideoCall />
           </IconButton>

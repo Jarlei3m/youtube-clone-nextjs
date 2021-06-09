@@ -1,23 +1,19 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import THEMES from 'src/utils/constants';
 
-interface StoreSettingsProps {
-  storeSettings: () => {};
-}
-
 interface SettingsProps {
   theme: string;
 }
 
 interface SettingsContextData {
   settings: SettingsProps;
-  saveSettings: () => void;
-  handleSaveSettings: () => void;
+  saveSettings: (theme: SettingsProps) => void;
+  handleSaveSettings: (update: SettingsProps) => void;
 }
 
 interface SettingsProviderProps {
   children: ReactNode;
-  settings: SettingsProps;
+  settings?: SettingsProps;
 }
 
 const defaultSettings = {
@@ -46,7 +42,7 @@ export const storeSettings = (settings: SettingsProps) => {
 
 export const SettingsContext = createContext({
   settings: defaultSettings,
-  saveSettings: () => {},
+  // saveSettings: () => {},
 } as SettingsContextData);
 
 export function SettingsProvider({
@@ -57,12 +53,12 @@ export function SettingsProvider({
     settings || defaultSettings,
   );
 
-  const handleSaveSettings = (update = {}) => {
+  function handleSaveSettings(update: SettingsProps) {
     const mergedSettings = update;
 
     setCurrentSettings(mergedSettings);
     storeSettings(mergedSettings);
-  };
+  }
 
   useEffect(() => {
     const restoredSettings = restoreSettings();

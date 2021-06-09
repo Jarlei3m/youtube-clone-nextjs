@@ -1,6 +1,18 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { PaletteOptions } from '@material-ui/core/styles/createPalette';
 import { colors } from '@material-ui/core';
 import THEMES from 'src/utils/constants';
+import { Overrides } from '@material-ui/core/styles/overrides';
+
+interface ConfigProps {
+  theme: string;
+}
+
+interface ThemeOptionsProps {
+  name: string;
+  overrides: Overrides;
+  palette: PaletteOptions;
+}
 
 // Create a theme instance.
 const themesOptions = [
@@ -71,12 +83,14 @@ const themesOptions = [
   },
 ];
 
-export const createTheme = (config = {}) => {
-  let themeOptions = themesOptions.find((theme) => theme.name === config.theme);
+export const createTheme = (config: ConfigProps) => {
+  let themeOptions = themesOptions.find(
+    (theme) => theme.name === config.theme,
+  ) as ThemeOptionsProps;
 
   if (!themeOptions) {
     console.warn(new Error(`The theme ${config.theme} is not valid`));
-    [themeOptions] = themesOptions;
+    // [themeOptions] = themesOptions;
   }
 
   const theme = createMuiTheme(themeOptions);
