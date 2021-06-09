@@ -14,16 +14,17 @@ import {
   Divider,
   Typography,
   Button,
-  Icon,
 } from '@material-ui/core';
 
-import HomeIcon from '@material-ui/icons/Home';
-import Subscriptions from '@material-ui/icons/Subscriptions';
-import WhatShot from '@material-ui/icons/WhatShot';
+import {
+  Home,
+  Subscriptions,
+  Whatshot,
+  AccountCircle,
+  History,
+} from '@material-ui/icons';
 
 import VideoLibrary from '@material-ui/icons/VideoLibrary';
-import History from '@material-ui/icons/History';
-import { AccountCircle } from '@material-ui/icons';
 import { signIn, useSession } from 'next-auth/client';
 import { useState } from 'react';
 
@@ -68,8 +69,8 @@ export function NavBar() {
   ]);
 
   const primaryMenu = [
-    { id: 1, label: 'Início', path: '/', icon: HomeIcon },
-    { id: 2, label: 'Em alta', path: '/trending', icon: WhatShot },
+    { id: 1, label: 'Início', path: '/', icon: Home },
+    { id: 2, label: 'Em alta', path: '/trending', icon: Whatshot },
     { id: 3, label: 'Inscrições', path: '/subscriptions', icon: Subscriptions },
   ];
 
