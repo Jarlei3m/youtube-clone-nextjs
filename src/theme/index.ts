@@ -90,7 +90,6 @@ export const createTheme = (config: ConfigProps) => {
 
   if (!themeOptions) {
     console.warn(new Error(`The theme ${config.theme} is not valid`));
-    // [themeOptions] = themesOptions;
   }
 
   const theme = createMuiTheme(themeOptions);

@@ -42,7 +42,6 @@ export const storeSettings = (settings: SettingsProps) => {
 
 export const SettingsContext = createContext({
   settings: defaultSettings,
-  // saveSettings: () => {},
 } as SettingsContextData);
 
 export function SettingsProvider({

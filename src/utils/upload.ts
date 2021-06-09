@@ -4,11 +4,6 @@ import multerS3 from 'multer-s3';
 import crypto from 'crypto';
 import { NextApiRequest } from 'next';
 
-declare const accessKeyId: string;
-declare const secretAccessKey: string;
-declare const region: string;
-declare const bucket: string;
-
 aws.config.update({
   secretAccessKey: process.env.AWSSECRET_KEY,
   accessKeyId: process.env.AWSACCESS_KEY,

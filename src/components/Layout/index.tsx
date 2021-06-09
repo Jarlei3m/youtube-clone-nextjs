@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { makeStyles } from '@material-ui/core';
-// import theme from '../../theme';
 import Head from 'next/head';
 
 import { TopBar } from './TopBar';
