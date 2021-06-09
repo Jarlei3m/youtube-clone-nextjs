@@ -1,18 +1,18 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 import { makeStyles } from '@material-ui/core';
-import theme from "../../theme";
-import  Head  from "next/head";
+// import theme from '../../theme';
+import Head from 'next/head';
 
-import { TopBar } from "./TopBar";
-import { NavBar } from "./NavBar";
+import { TopBar } from './TopBar';
+import { NavBar } from './NavBar';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.primary.dark,
     display: 'flex',
     height: '100vh',
     overflow: 'hidden',
-    width: '100vw'
+    width: '100vw',
   },
   warpper: {
     display: 'flex',
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     paddingTop: 64,
     [theme.breakpoints.up('lg')]: {
       paddingLeft: 256,
-    }
+    },
   },
   contentContainer: {
     display: 'flex',
@@ -33,21 +33,21 @@ const useStyles = makeStyles({
     height: '100%',
     overflow: 'auto',
   },
-})
+}));
 
 interface LayoutProps {
   children: ReactNode;
   title: string;
 }
 
-export function Layout({children, title}: LayoutProps) {
+export function Layout({ children, title }: LayoutProps) {
   const classes = useStyles();
 
   return (
     <>
       <Head>
         <title>{title}</title>
-        <meta charSet="utf-8"/>
+        <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale-1.0, width-device-width" />
       </Head>
 
@@ -61,5 +61,5 @@ export function Layout({children, title}: LayoutProps) {
         </div>
       </div>
     </>
-  )
+  );
 }

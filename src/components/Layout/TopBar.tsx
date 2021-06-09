@@ -10,10 +10,19 @@ import {
   Paper,
   Toolbar,
 } from '@material-ui/core';
-import { AccountCircle, Apps, MoreVert, VideoCall } from '@material-ui/icons';
+import {
+  AccountCircle,
+  Apps,
+  Brightness4,
+  MoreVert,
+  VideoCall,
+} from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import { signIn, signOut, useSession } from 'next-auth/client';
+import useSettings from 'src/hooks/useSettings';
+import THEMES from 'src/utils/constants';
+import Brightness7 from '@material-ui/icons/Brightness7';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 export function TopBar() {
   const classes = useStyles();
   const [session] = useSession();
+  const { settings, saveSettings } = useSettings();
 
   return (
     <AppBar className={classes.root} color="default">
@@ -56,7 +66,11 @@ export function TopBar() {
         <Box display="flex" alignItems="center">
           <MenuIcon />
           <img
-            src="/new-youtube-logo.svg"
+            src={
+              settings.theme === THEMES.DARK
+                ? '/branco.png'
+                : '/new-youtube-logo.svg'
+            }
             alt="logo"
             className={classes.logo}
           />
@@ -76,6 +90,17 @@ export function TopBar() {
           </Box>
         </Hidden>
         <Box display="flex">
+          <IconButton className={classes.icons}>
+            {settings.theme === THEMES.DARK ? (
+              <Brightness7
+                onClick={() => saveSettings({ theme: THEMES.LIGHT })}
+              />
+            ) : (
+              <Brightness4
+                onClick={() => saveSettings({ theme: THEMES.DARK })}
+              />
+            )}
+          </IconButton>
           <IconButton className={classes.icons}>
             <VideoCall />
           </IconButton>
