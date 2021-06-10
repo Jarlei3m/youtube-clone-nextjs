@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     width: 700,
   },
   input: {
+    paddingLeft: '8px',
     flex: 1,
   },
   icons: {},
